@@ -18,5 +18,12 @@ namespace RPG_Kata.Tests
             var character = new Character();
             Assert.AreEqual(1, character.Level);
         }
+
+        [TestMethod]
+        public void Have_Alive_Property_Equals_True_Upon_Creation()
+        {
+            var character = new Character();
+            Assert.IsTrue(character.Alive);
+        }
     }
 }
