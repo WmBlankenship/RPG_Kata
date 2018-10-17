@@ -25,5 +25,17 @@ namespace RPG_Kata.Tests
             var character = new Character();
             Assert.IsTrue(character.Alive);
         }
+
+        [TestMethod]
+        public void Have_Health_Reduced_When_Damage_Is_Dealt()
+        {
+            var attackingCharacter = new Character();
+            var damagedCharacter = new Character();
+            var initialHealth = damagedCharacter.Health;
+
+            attackingCharacter.Attack(damagedCharacter);
+
+            Assert.IsTrue(damagedCharacter.Health < initialHealth);
+        }
     }
 }

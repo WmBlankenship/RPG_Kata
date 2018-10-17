@@ -14,5 +14,10 @@ namespace RPG_Kata
             this.Level = 1;
             this.Alive = true;
         }
+
+        public void Attack(Character damagedCharacter)
+        {
+            damagedCharacter.Health -= 1;
+        }
     }
 }
