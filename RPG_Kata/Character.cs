@@ -25,5 +25,15 @@ namespace RPG_Kata
                 damagedCharacter.Health = 0;
             }
         }
+
+        public void Heal(Character characterToHeal)
+        {
+            characterToHeal.Health += 50;
+
+            if (characterToHeal.Health > 1000)
+            {
+                characterToHeal.Health = 1000;
+            }
+        }
     }
 }
