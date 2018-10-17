@@ -37,5 +37,27 @@ namespace RPG_Kata.Tests
 
             Assert.IsTrue(damagedCharacter.Health < initialHealth);
         }
+
+        [TestMethod]
+        public void Have_Alive_Equals_False_When_Damage_Exceeds_Current_Health()
+        {
+            var attackingCharacter = new Character();
+            var damagedCharacter = new Character { Health = 10 };
+
+            attackingCharacter.Attack(damagedCharacter);
+
+            Assert.IsFalse(damagedCharacter.Alive);
+        }
+
+        [TestMethod]
+        public void Have_Health_Equals_Zero_When_Damage_Exceeds_Current_Health()
+        {
+            var attackingCharacter = new Character();
+            var damagedCharacter = new Character { Health = 10 };
+
+            attackingCharacter.Attack(damagedCharacter);
+
+            Assert.AreEqual(0, damagedCharacter.Health);
+        }
     }
 }

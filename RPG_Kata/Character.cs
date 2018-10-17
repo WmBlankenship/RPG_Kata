@@ -17,7 +17,13 @@ namespace RPG_Kata
 
         public void Attack(Character damagedCharacter)
         {
-            damagedCharacter.Health -= 1;
+            damagedCharacter.Health -= 50;
+
+            if (damagedCharacter.Health < 0)
+            {
+                damagedCharacter.Alive = false;
+                damagedCharacter.Health = 0;
+            }
         }
     }
 }
