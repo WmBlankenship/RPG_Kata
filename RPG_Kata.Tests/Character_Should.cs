@@ -80,5 +80,29 @@ namespace RPG_Kata.Tests
 
             Assert.AreEqual(initialHealth, character.Health);
         }
+
+        [TestMethod]
+        public void Should_Deal_Fifty_Percent_More_Damage_To_An_Opponent_Five_Or_More_Levels_Less()
+        {
+            var attackingCharacter = new Character { Level = 6 };
+            var attackedCharacter = new Character { Level = 1 };
+            var expectedHealth = attackedCharacter.Health - 60;
+
+            attackingCharacter.Attack(attackedCharacter);
+
+            Assert.AreEqual(expectedHealth, attackedCharacter.Health);
+        }
+
+        [TestMethod]
+        public void Should_Deal_Fifty_Percent_Less_Damage_To_An_Opponent_Five_Or_More_Levels_Greater()
+        {
+            var attackingCharacter = new Character { Level = 1 };
+            var attackedCharacter = new Character { Level = 6 };
+            var expectedHealth = attackedCharacter.Health - 20;
+
+            attackingCharacter.Attack(attackedCharacter);
+
+            Assert.AreEqual(expectedHealth, attackedCharacter.Health);
+        }
     }
 }

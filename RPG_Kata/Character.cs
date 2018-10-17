@@ -4,7 +4,7 @@ namespace RPG_Kata
 {
     public class Character
     {
-        public int Health { get; set; }
+        public double Health { get; set; }
         public int Level { get; set; }
         public bool Alive { get; set; }
 
@@ -19,7 +19,7 @@ namespace RPG_Kata
         {
             if (damagedCharacter == this) return;
 
-            damagedCharacter.Health -= 50;
+            damagedCharacter.Health -= 40 * GetDamageMultiplier(damagedCharacter.Level);
 
             if (damagedCharacter.Health < 0)
             {
@@ -36,6 +36,15 @@ namespace RPG_Kata
             {
                 this.Health = 1000;
             }
+        }
+
+        private double GetDamageMultiplier(int level)
+        {
+            if (this.Level >= level + 5) return 1.5;
+
+            if (this.Level + 5 <= level) return .5;
+
+            return 1;
         }
     }
 }
