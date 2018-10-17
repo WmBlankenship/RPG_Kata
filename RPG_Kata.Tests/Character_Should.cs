@@ -11,5 +11,12 @@ namespace RPG_Kata.Tests
             var character = new Character();
             Assert.AreEqual(1000, character.Health);
         }
+
+        [TestMethod]
+        public void Have_Level_One_Upon_Creation()
+        {
+            var character = new Character();
+            Assert.AreEqual(1, character.Level);
+        }
     }
 }
