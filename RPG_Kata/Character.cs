@@ -17,6 +17,8 @@ namespace RPG_Kata
 
         public void Attack(Character damagedCharacter)
         {
+            if (damagedCharacter == this) return;
+
             damagedCharacter.Health -= 50;
 
             if (damagedCharacter.Health < 0)
@@ -26,13 +28,13 @@ namespace RPG_Kata
             }
         }
 
-        public void Heal(Character characterToHeal)
+        public void Heal()
         {
-            characterToHeal.Health += 50;
+            this.Health += 50;
 
-            if (characterToHeal.Health > 1000)
+            if (this.Health > 1000)
             {
-                characterToHeal.Health = 1000;
+                this.Health = 1000;
             }
         }
     }

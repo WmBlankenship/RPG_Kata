@@ -63,12 +63,22 @@ namespace RPG_Kata.Tests
         [TestMethod]
         public void Have_Health_Increased_When_Healed_Not_Exceed_One_Thousand()
         {
-            var healingCharacter = new Character();
             var characterToHeal = new Character { Health = 990 };
 
-            healingCharacter.Heal(characterToHeal);
+            characterToHeal.Heal();
 
             Assert.AreEqual(1000, characterToHeal.Health);
+        }
+
+        [TestMethod]
+        public void Not_Be_Able_To_Damage_Itself()
+        {
+            var character = new Character();
+            var initialHealth = character.Health;
+
+            character.Attack(character);
+
+            Assert.AreEqual(initialHealth, character.Health);
         }
     }
 }
