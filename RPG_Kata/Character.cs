@@ -23,8 +23,7 @@ namespace RPG_Kata
 
             if (damagedCharacter.Health < 0)
             {
-                damagedCharacter.Alive = false;
-                damagedCharacter.Health = 0;
+                KillCharacter(damagedCharacter);
             }
         }
 
@@ -36,6 +35,12 @@ namespace RPG_Kata
             {
                 this.Health = 1000;
             }
+        }
+
+        private void KillCharacter(Character soonToBeDeadCharacter)
+        {
+            soonToBeDeadCharacter.Health = 0;
+            soonToBeDeadCharacter.Alive = false;
         }
 
         private double GetDamageMultiplier(int level)
