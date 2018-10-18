@@ -18,15 +18,15 @@ namespace RPG_Kata
             this.Alive = true;
         }
 
-        public void Attack(Character damagedCharacter)
+        public void Attack(Character characterToDamage)
         {
-            if (damagedCharacter == this) return;
+            if (characterToDamage == this) return;
 
-            damagedCharacter.Health -= HEALTH_DECREMENT_FROM_ATTACK * GetDamageMultiplier(damagedCharacter.Level);
+            DamageCharacter(characterToDamage);
 
-            if (damagedCharacter.Health < 0)
+            if (characterToDamage.Health < 0)
             {
-                KillCharacter(damagedCharacter);
+                KillCharacter(characterToDamage);
             }
         }
 
@@ -40,10 +40,11 @@ namespace RPG_Kata
             }
         }
 
-        private void KillCharacter(Character soonToBeDeadCharacter)
+        private void DamageCharacter(Character characterToDamage)
         {
-            soonToBeDeadCharacter.Health = 0;
-            soonToBeDeadCharacter.Alive = false;
+            var damageToInflict = HEALTH_DECREMENT_FROM_ATTACK * GetDamageMultiplier(characterToDamage.Level);
+
+            characterToDamage.Health -= damageToInflict;
         }
 
         private double GetDamageMultiplier(int level)
@@ -53,6 +54,12 @@ namespace RPG_Kata
             if (this.Level + 5 <= level) return .5;
 
             return 1;
+        }
+
+        private void KillCharacter(Character soonToBeDeadCharacter)
+        {
+            soonToBeDeadCharacter.Health = 0;
+            soonToBeDeadCharacter.Alive = false;
         }
     }
 }
