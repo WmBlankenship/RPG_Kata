@@ -4,6 +4,7 @@ namespace RPG_Kata
 {
     public class Character
     {
+        private const int MAX_HEALTH = 1000;
         private const int HEALTH_INCREMENT_FROM_HEAL = 50;
         private const int HEALTH_DECREMENT_FROM_ATTACK = 40;
 
@@ -13,7 +14,7 @@ namespace RPG_Kata
 
         public Character()
         {
-            this.Health = 1000;
+            this.Health = MAX_HEALTH;
             this.Level = 1;
             this.Alive = true;
         }
@@ -32,12 +33,9 @@ namespace RPG_Kata
 
         public void Heal()
         {
-            this.Health += HEALTH_INCREMENT_FROM_HEAL;
-
-            if (this.Health > 1000)
-            {
-                this.Health = 1000;
-            }
+            this.Health = HealingWillSetHealthGreaterThanMax()
+                ? MAX_HEALTH
+                : this.Health + HEALTH_INCREMENT_FROM_HEAL;
         }
 
         private void DamageCharacter(Character characterToDamage)
@@ -60,6 +58,11 @@ namespace RPG_Kata
         {
             soonToBeDeadCharacter.Health = 0;
             soonToBeDeadCharacter.Alive = false;
+        }
+
+        private bool HealingWillSetHealthGreaterThanMax()
+        {
+            return this.Health + HEALTH_INCREMENT_FROM_HEAL > MAX_HEALTH;
         }
     }
 }
