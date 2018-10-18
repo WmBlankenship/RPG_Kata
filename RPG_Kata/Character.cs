@@ -4,6 +4,9 @@ namespace RPG_Kata
 {
     public class Character
     {
+        private const int HEALTH_INCREMENT_FROM_HEAL = 50;
+        private const int HEALTH_DECREMENT_FROM_ATTACK = 40;
+
         public double Health { get; set; }
         public int Level { get; set; }
         public bool Alive { get; set; }
@@ -19,7 +22,7 @@ namespace RPG_Kata
         {
             if (damagedCharacter == this) return;
 
-            damagedCharacter.Health -= 40 * GetDamageMultiplier(damagedCharacter.Level);
+            damagedCharacter.Health -= HEALTH_DECREMENT_FROM_ATTACK * GetDamageMultiplier(damagedCharacter.Level);
 
             if (damagedCharacter.Health < 0)
             {
@@ -29,7 +32,7 @@ namespace RPG_Kata
 
         public void Heal()
         {
-            this.Health += 50;
+            this.Health += HEALTH_INCREMENT_FROM_HEAL;
 
             if (this.Health > 1000)
             {
